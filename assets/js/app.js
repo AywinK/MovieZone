@@ -1,5 +1,5 @@
 
-var searchSubmitEl = $("#search[type=submit]");
+var searchSubmitEl = $("form #search[type=submit]");
 
 console.log("test");
 
@@ -25,8 +25,45 @@ function getOmdbAPIData(movieTitle) {
     $.get(titleSearchUrl)
     .then(function (OmdbDataObj) {
         console.log(OmdbDataObj);
+        var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
+        addsMovieDataToElement(movieData);
     })
 
 }
 
-function extractsDatafromOmdbDataObj(OmdbDataObj)
+function extractsDatafromOmdbDataObj(OmdbDataObj) {
+    // var yearVal = OmdbDataObj.Year;
+    // var actorsVal = OmdbDataObj.Actors;
+    // var directorVal = OmdbDataObj.Director;
+    // var genreVal = OmdbDataObj.Genre;
+    // var plotVal = OmdbDataObj.Plot;
+    // var imdbRatingVal = OmdbDataObj.imdbRating;
+    // var arr = [yearVal, actorsVal, directorVal, genreVal, plotVal, imdbRatingVal];
+    // console.log(arr);
+
+    var movieData = {
+        Year: OmdbDataObj.Year,
+        Actors: OmdbDataObj.Actors,
+        Director: OmdbDataObj.Director,
+        Genre: OmdbDataObj.Genre,
+        Plot: OmdbDataObj.Plot,
+        Rating: OmdbDataObj.imdbRating
+    };
+
+    return movieData
+
+};
+
+function addsMovieDataToElement(movieData) {
+    $("#movie-info").html(`
+    <div class="container">
+        <h1>Movie Info</h1>
+        <p>Year: ${movieData.Year}</p>
+        <p>Actors: ${movieData.Actors}</p>
+        <p>Director: ${movieData.Director}</p>
+        <p>Genre: ${movieData.Genre}</p>
+        <p>Plot: ${movieData.Plot}</p>
+        <p>Rating: ${movieData.Rating}</p>
+    </div>
+    `);
+}
