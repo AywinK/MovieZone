@@ -14,28 +14,39 @@
   <body class="d-flex justify-content-center align-items-center flex-column">
     <header class="mb-5">
       <nav>
-        <a href="about.html">placeholder</a>
+        <a href="#" onclick="">placeholder</a>
       </nav>
     </header>
 
-    <form action="" class="">
-      <h1>What to Watch</h1>
-      <!-- <label for="search" class="">Search for a movie:</label> -->
-      <input
-        type="text"
-        class=""
-        id="search"
-        name="search"
-        placeholder="Search for a movie"
-        autocomplete="off"
-      />
-      <input type="submit" class="" name="search" id="search" value="Search" />
-    </form>
-    <div class="randomImgContainer">
-      <!-- <button type="button" class="randomBtn">Generate Random Movie</button> -->
-      <h2>Click here for a random movie suggestion!</h2>
+    <div id="main-body">
+      <div id="home">
+        <form onsubmit="performSearch();return false" class="">
+          <!--return false to prevent screen reload-->
+          <h1>What to Watch</h1>
+          <!-- <label for="search" class="">Search for a movie:</label> -->
+          <input
+            type="text"
+            class=""
+            id="search"
+            name="search"
+            placeholder="Search for a movie"
+            autocomplete="off"
+          />
+          <input type="submit" class="" value="Search" />
+        </form>
+        <div class="randomImgContainer">
+          <!-- <button type="button" class="randomBtn">Generate Random Movie</button> -->
+          <h2>Click here for a random movie suggestion!</h2>
+        </div>
+      </div>
+      <div id="searchContent" style="display: none">
+        <button id="back" onclick="history.back()">Back</button>
+        <h1 id="searchTitle">Search Title</h1>
+        <div>Other stuff goes here</div>
+      </div>
     </div>
-
     <!-- <img src="https://api.lorem.space/image/movie?w=150&h=220" alt=""> -->
+
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
