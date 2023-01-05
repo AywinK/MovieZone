@@ -27,6 +27,8 @@ function getOmdbAPIData(movieTitle) {
         console.log(OmdbDataObj);
         var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
         addsMovieDataToElement(movieData);
+        var movieTitle = OmdbDataObj.Title;
+        console.log(movieTitle + ": this line 31");
     })
 
 }
@@ -66,4 +68,9 @@ function addsMovieDataToElement(movieData) {
         <p>Rating: ${movieData.Rating}</p>
     </div>
     `);
+};
+
+function getsYouTubeVideo() {
+    // youtube api key for me: AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY;
+    
 }
