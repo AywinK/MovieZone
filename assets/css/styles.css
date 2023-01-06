@@ -10,7 +10,20 @@
   margin-top: 10px;
 }
 
+/*RESETS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+body {
+  font-family:
+}
+/*GLOBAL CLASSES*/
 .main-body {
   display: flex;
   flex-direction: column;
 }
+
+/*CUSTOM STYLES*/
