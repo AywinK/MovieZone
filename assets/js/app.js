@@ -19,8 +19,9 @@ searchSubmitEl.click(function (e) {
 function getOmdbAPIData(movieTitle) {
 
     var omdbAPIKey = "fac4214b";
-    baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`
-    titleSearchUrl = baseUrl + `t=${movieTitle}&`
+    var baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`;
+    var contentType = "type=movie&";
+    titleSearchUrl = baseUrl + `t=${movieTitle}&`;
 
     $.get(titleSearchUrl)
         .then(function (OmdbDataObj) {
@@ -76,11 +77,13 @@ function getsYouTubeVideo(movieTitle) {
     var youtubeAPIKey = "key=AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY&";
     var partUrl = "part=snippet&"
     var maxReturnedResults = "maxResults=1&";
-    var searchQuery = `q=${movieTitle}+Official+Trailer&`
+    var searchQuery = `q=${movieTitle}+Official+Movie+Trailer&`
     var contentTypeSearched = "type=video&"
     var baseUrl = "https://www.googleapis.com/youtube/v3/search?"
 
     var searchRequestUrl = baseUrl + youtubeAPIKey + partUrl + maxReturnedResults + searchQuery + contentTypeSearched;
+
+    console.log(searchQuery);
 
     $.get(searchRequestUrl)
         .then(function (youtubeDataObj) {
@@ -95,7 +98,7 @@ function getsYouTubeVideo(movieTitle) {
 function addsMovieTrailerToElement(videoId) {
     console.log("?????? youtube element where");
     $("#movie-trailer").html(`
-    <iframe width="420" height="315"
+    <iframe width="900" height="600"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>
     `)
