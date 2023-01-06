@@ -5,15 +5,15 @@ console.log("test");
 
 searchSubmitEl.click(function (e) {
     e.preventDefault();
-    var userInput = $("#search[type=text]"); 
+    var userInput = $("#search[type=text]");
     var movieTitle = userInput.val();
     if (movieTitle) {
         console.log(movieTitle);
         getOmdbAPIData(movieTitle);
         userInput.val(``);
-        
+
     }
-    
+
 });
 
 function getOmdbAPIData(movieTitle) {
@@ -21,15 +21,16 @@ function getOmdbAPIData(movieTitle) {
     var omdbAPIKey = "fac4214b";
     baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`
     titleSearchUrl = baseUrl + `t=${movieTitle}&`
-    
+
     $.get(titleSearchUrl)
-    .then(function (OmdbDataObj) {
-        console.log(OmdbDataObj);
-        var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
-        addsMovieDataToElement(movieData);
-        var movieTitle = OmdbDataObj.Title;
-        console.log(movieTitle + ": this line 31");
-    })
+        .then(function (OmdbDataObj) {
+            console.log(OmdbDataObj);
+            var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
+            addsMovieDataToElement(movieData);
+            var movieTitle = OmdbDataObj.Title;
+            console.log(movieTitle + ": this line 31");
+            getsYouTubeVideo(movieTitle);
+        })
 
 }
 
@@ -70,7 +71,32 @@ function addsMovieDataToElement(movieData) {
     `);
 };
 
-function getsYouTubeVideo() {
+function getsYouTubeVideo(movieTitle) {
     // youtube api key for me: AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY;
+    var youtubeAPIKey = "key=AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY&";
+    var partUrl = "part=snippet&"
+    var maxReturnedResults = "maxResults=1&";
+    var searchQuery = `q=${movieTitle}+Official+Trailer&`
+    var contentTypeSearched = "type=video&"
+    var baseUrl = "https://www.googleapis.com/youtube/v3/search?"
 
+    var searchRequestUrl = baseUrl + youtubeAPIKey + partUrl + maxReturnedResults + searchQuery + contentTypeSearched;
+
+    $.get(searchRequestUrl)
+        .then(function (youtubeDataObj) {
+            console.log(youtubeDataObj);
+            console.log(youtubeDataObj.items[0].id.videoId);
+            var videoId = youtubeDataObj.items[0].id.videoId;
+            addsMovieTrailerToElement(videoId);
+        })
+
+};
+
+function addsMovieTrailerToElement(videoId) {
+    console.log("?????? youtube element where");
+    $("#movie-trailer").html(`
+    <iframe width="420" height="315"
+    src="https://www.youtube.com/embed/${videoId}">
+    </iframe>
+    `)
 }
