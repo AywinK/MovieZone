@@ -19,7 +19,7 @@ searchSubmitEl.click(function (e) {
 function getOmdbAPIData(movieTitle) {
 
     var omdbAPIKey = "fac4214b";
-    baseUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&`
+    baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`
     titleSearchUrl = baseUrl + `t=${movieTitle}&`
     
     $.get(titleSearchUrl)
@@ -72,5 +72,5 @@ function addsMovieDataToElement(movieData) {
 
 function getsYouTubeVideo() {
     // youtube api key for me: AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY;
-    
+
 }
