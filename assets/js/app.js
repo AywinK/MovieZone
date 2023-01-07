@@ -28,30 +28,22 @@ function getOmdbAPIData(movieTitle) {
             console.log(OmdbDataObj);
             var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
             addsMovieDataToElement(movieData);
-            var movieTitle = OmdbDataObj.Title;
-            console.log(movieTitle + ": this line 31");
-            getsYouTubeVideo(movieTitle);
+            getsYouTubeVideo(movieData.Title);
         })
 
 }
 
 function extractsDatafromOmdbDataObj(OmdbDataObj) {
-    // var yearVal = OmdbDataObj.Year;
-    // var actorsVal = OmdbDataObj.Actors;
-    // var directorVal = OmdbDataObj.Director;
-    // var genreVal = OmdbDataObj.Genre;
-    // var plotVal = OmdbDataObj.Plot;
-    // var imdbRatingVal = OmdbDataObj.imdbRating;
-    // var arr = [yearVal, actorsVal, directorVal, genreVal, plotVal, imdbRatingVal];
-    // console.log(arr);
-
     var movieData = {
+        Title: OmdbDataObj.Title,
         Year: OmdbDataObj.Year,
         Actors: OmdbDataObj.Actors,
         Director: OmdbDataObj.Director,
         Genre: OmdbDataObj.Genre,
         Plot: OmdbDataObj.Plot,
-        Rating: OmdbDataObj.imdbRating
+        Rating: OmdbDataObj.imdbRating,
+        Poster: OmdbDataObj.Poster,
+        Runtime: OmdbDataObj.Runtime
     };
 
     return movieData
@@ -59,9 +51,66 @@ function extractsDatafromOmdbDataObj(OmdbDataObj) {
 };
 
 function addsMovieDataToElement(movieData) {
-    $("#movie-info").html(`
+    var movieInfoEl = $("#movie-info");
+
+    movieInfoEl.html(``);
+
+    var modalHTML = `<div id="modal-container" class="">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
+      <i class="fa-solid fa-clock fs-4"></i><br><span></span>
+    </button>
+
+    <div class="modal fade" id="watchLaterModal" tabindex="-1" aria-labelledby="watchLaterModalLabel"
+      style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="watchLaterModalLabel">${movieData.Title}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <section class="text-white p-2" style="
+            background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieData.Poster});
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 0.4em;
+            ">
+              <h2>Runtime:</h2>
+              <p>${movieData.Runtime}</p>
+              <h2>Plot:</h2>
+              <p>${movieData.Plot}</p>
+            </section>
+            <form>
+              <div class="mb-3">
+                <label for="viewingpartymembers" class="col-form-label mt-3">Watch Party Members:</label>
+                <input type="text" class="form-control" id="viewingpartymembers" placeholder="Who are you going to watch the movie with?">
+              </div>
+              <div class="mb-3" id="watchDate"></div>
+              <div class="mb-3">
+                <label for="Location" class="col-form-label">Location:</label>
+                <input type="text" class="form-control" id="Location" placeholder="Where are you going to watch the movie?">
+              </div>
+              <div class="mb-3">
+                <label for="addInfo" class="col-form-label">Additional Info:</label>
+                <textarea class="form-control" rows="5" id="addInfo" placeholder="Add additional info such as scheduled movie start time here."></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-light" id="saveToWatchList">Add to Watch List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+    movieInfoEl.html(`
     <div class="container">
-        <h1>Movie Info</h1>
+        <div class="d-flex justify-content-between align-items-center">
+        <h1><u>${movieData.Title}</u></h1>
+        ${modalHTML}
+        </div>
         <p>Year: ${movieData.Year}</p>
         <p>Actors: ${movieData.Actors}</p>
         <p>Director: ${movieData.Director}</p>
@@ -97,7 +146,12 @@ function getsYouTubeVideo(movieTitle) {
 
 function addsMovieTrailerToElement(videoId) {
     console.log("?????? youtube element where");
-    $("#movie-trailer").html(`
+
+    var movieTrailerEl = $("#movie-trailer");
+
+    movieTrailerEl.html(``);
+
+    movieTrailerEl.html(`
     <iframe width="600" height="400"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>

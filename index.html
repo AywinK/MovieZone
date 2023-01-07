@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/dark-hive/jquery-ui.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <title>What to Watch</title>
@@ -34,9 +34,10 @@
 
   <div id="movie-trailer" class=""></div>
 
-  <div id="modal-container" class="">
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#watchLaterModal"
-      data-bs-whatever="@mdo">Want to Watch Later?</button>
+  <!-- <div id="modal-container" class="">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
+      <i class="fa-solid fa-clock fs-4"></i><br><span>Watch Later</span>
+    </button>
 
     <div class="modal fade" id="watchLaterModal" tabindex="-1" aria-labelledby="watchLaterModalLabel"
       style="display: none;" aria-hidden="true">
@@ -62,28 +63,28 @@
             </section>
             <form>
               <div class="mb-3">
-                <label for="viewingpartymembers" class="col-form-label mt-3">Viewing Party Members:</label>
-                <input type="text" class="form-control" id="viewingpartymembers">
+                <label for="viewingpartymembers" class="col-form-label mt-3">Watch Party Members:</label>
+                <input type="text" class="form-control" id="viewingpartymembers" placeholder="Who are you going to watch the movie with?">
               </div>
               <div class="mb-3" id="watchDate"></div>
               <div class="mb-3">
                 <label for="Location" class="col-form-label">Location:</label>
-                <input type="text" class="form-control" id="Location">
+                <input type="text" class="form-control" id="Location" placeholder="Where are you going to watch the movie?">
               </div>
               <div class="mb-3">
                 <label for="addInfo" class="col-form-label">Additional Info:</label>
-                <textarea class="form-control" rows="5" id="addInfo"></textarea>
+                <textarea class="form-control" rows="5" id="addInfo" placeholder="Add additional info such as scheduled movie start time here."></textarea>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-light">Add to Watch List</button>
+            <button type="button" class="btn btn-light" id="saveToWatchList">Add to Watch List</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- <img src="https://api.lorem.space/image/movie?w=150&h=220" alt=""> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
