@@ -41,16 +41,17 @@
     <div class="modal fade" id="watchLaterModal" tabindex="-1" aria-labelledby="watchLaterModalLabel"
       style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark text-white">
           <div class="modal-header">
-            <h1 class="modal-title fs-5 opacity-50" id="watchLaterModalLabel">placeholder</h1>
+            <h1 class="modal-title fs-5" id="watchLaterModalLabel">placeholder</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <section class="text-white" style="
-            background-image: linear-gradient(to left, rgba(8, 8, 8, 0.3), rgba(0, 0, 0,0.4)), url(https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg);
+            <section class="text-white p-2" style="
+            background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg);
             background-repeat: no-repeat;
             background-size: cover;
+            border-radius: 0.4em;
             ">
               <h2>Runtime:</h2>
               <p>20min</p>
@@ -61,7 +62,7 @@
             </section>
             <form>
               <div class="mb-3">
-                <label for="viewingpartymembers" class="col-form-label">Viewing Party Members:</label>
+                <label for="viewingpartymembers" class="col-form-label mt-3">Viewing Party Members:</label>
                 <input type="text" class="form-control" id="viewingpartymembers">
               </div>
               <div class="mb-3" id="watchDate"></div>
@@ -77,7 +78,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-dark">Add to Watch List</button>
+            <button type="button" class="btn btn-light">Add to Watch List</button>
           </div>
         </div>
       </div>
