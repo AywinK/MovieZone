@@ -1,5 +1,16 @@
 
+/*RESETS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
 body {
-  background-color: rgb(30,30,30);
-  color: #f3f3f3;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/*GLOBAL CLASSES*/
+.main-body {
+  display: flex;
+  flex-direction: column;
 }
