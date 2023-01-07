@@ -28,7 +28,7 @@ function getOmdbAPIData(movieTitle) {
             console.log(OmdbDataObj);
             var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
             addsMovieDataToElement(movieData);
-            getsYouTubeVideo(movieData.Title, movieData.Year);
+            // getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
         })
 
 }
@@ -80,15 +80,18 @@ function addsMovieDataToElement(movieData) {
               <h2>Plot:</h2>
               <p>${movieData.Plot}</p>
             </section>
-            <form>
+            <form id="watchLaterForm">
               <div class="mb-3">
                 <label for="viewingpartymembers" class="col-form-label mt-3">Watch Party Members:</label>
-                <input type="text" class="form-control" id="viewingpartymembers" placeholder="Who are you going to watch the movie with?">
+                <input type="text" class="form-control" id="viewingpartymembers" placeholder="Who are you going to watch the movie with?" autocomplete="off">
               </div>
-              <div class="mb-3" id="watchDate"></div>
+              <div>
+              <p>Date:</p>
+                <div class="mb-3 justify-content-center row" id="watchDate"></div>
+              </div>
               <div class="mb-3">
-                <label for="Location" class="col-form-label">Location:</label>
-                <input type="text" class="form-control" id="Location" placeholder="Where are you going to watch the movie?">
+                <label for="location" class="col-form-label">Location:</label>
+                <input type="text" class="form-control" id="location" placeholder="Where are you going to watch the movie?" autocomplete="off">
               </div>
               <div class="mb-3">
                 <label for="addInfo" class="col-form-label">Additional Info:</label>
@@ -98,7 +101,7 @@ function addsMovieDataToElement(movieData) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-light" id="saveToWatchList">Add to Watch List</button>
+            <button type="submit" form="watchLaterForm" class="btn btn-light" data-bs-dismiss="modal" id="saveToWatchList">Add to Watch List</button>
           </div>
         </div>
       </div>
@@ -119,6 +122,50 @@ function addsMovieDataToElement(movieData) {
         <p>Rating: ${movieData.Rating}</p>
     </div>
     `);
+
+    movieInfoEl.show();
+
+    $("#watchDate").datepicker();
+
+    $("#watchLaterForm").submit(submitsFormActions);
+
+    function submitsFormActions(e) {
+        e.preventDefault();
+
+        var viewingpartymembersVal = $("#viewingpartymembers").val();
+        var locationVal = $("#location").val();
+        var addInfoVal = $("#addInfo").val();
+        var currentDate = $("#watchDate").datepicker("getDate");
+
+        var epocMillisecondsTime = currentDate.getTime();
+
+        // currentDate = moment(epocMillisecondsTime).format('Do MMM YYYY');
+        // currentDate = moment.unix(currentDate);
+        // currentDate =
+
+        console.log([viewingpartymembersVal, locationVal, addInfoVal, epocMillisecondsTime]);
+        movieInfoEl.html(``);
+        movieInfoEl.hide();
+
+        var movieTrailerEl = $("#movie-trailer");
+        movieTrailerEl.html(``);
+        movieTrailerEl.hide();
+
+        var movieSaveDataObj = {
+            Title: movieData.Title,
+            Runtime: movieData.Runtime,
+            Plot: movieData.Plot,
+            WatchBuddies: viewingpartymembersVal,
+            WatchLocation: locationVal,
+            DateEpocMS: epocMillisecondsTime,
+            AddInfo: addInfoVal,
+            Poster: movieData.Poster
+        };
+
+        addsToHistory(movieSaveDataObj);
+
+    }
+
 };
 
 function getsYouTubeVideo(movieTitle, movieYear) {
@@ -155,5 +202,31 @@ function addsMovieTrailerToElement(videoId) {
     <iframe width="600" height="400"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>
-    `)
+    `);
+    movieTrailerEl.show();
+};
+
+// gets history from local storage
+function getsHistory() {
+    return JSON.parse(localStorage.getItem("movieScheduleUserData")) || [];
+};
+
+// saves history to local storage
+function savesHistory(arr) {
+    localStorage.setItem("movieScheduleUserData", JSON.stringify(arr));
+};
+
+// adds valid search term to history array
+function addsToHistory(movieSaveDataObj) {
+
+    console.log("hello????");
+
+    var movieScheduleUserData = getsHistory();
+
+    movieScheduleUserData.push(movieSaveDataObj);
+
+    // sorts arr earliest to latest date schedule using epoc time in ms before saving to local storage
+    movieScheduleUserData.sort(function (a, b) { return a.DateEpocMS - b.DateEpocMS });
+
+    savesHistory(movieScheduleUserData);
 };
