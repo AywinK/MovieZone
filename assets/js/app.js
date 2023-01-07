@@ -29,6 +29,7 @@ function getOmdbAPIData(movieTitle) {
             var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
             addsMovieDataToElement(movieData);
             // getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
+            getsYouTubeVideoTestingPurposes();  //uncomment for testing
         })
 
 }
@@ -56,7 +57,7 @@ function addsMovieDataToElement(movieData) {
     movieInfoEl.html(``);
 
     var modalHTML = `<div id="modal-container" class="">
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
       <i class="fa-solid fa-clock fs-4"></i><br><span></span>
     </button>
 
@@ -139,10 +140,6 @@ function addsMovieDataToElement(movieData) {
 
         var epocMillisecondsTime = currentDate.getTime();
 
-        // currentDate = moment(epocMillisecondsTime).format('Do MMM YYYY');
-        // currentDate = moment.unix(currentDate);
-        // currentDate =
-
         console.log([viewingpartymembersVal, locationVal, addInfoVal, epocMillisecondsTime]);
         movieInfoEl.html(``);
         movieInfoEl.hide();
@@ -199,7 +196,7 @@ function addsMovieTrailerToElement(videoId) {
     movieTrailerEl.html(``);
 
     movieTrailerEl.html(`
-    <iframe width="600" height="400"
+    <iframe style="width: 100%; height: 100%;" class="p-2"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>
     `);
@@ -229,4 +226,10 @@ function addsToHistory(movieSaveDataObj) {
     movieScheduleUserData.sort(function (a, b) { return a.DateEpocMS - b.DateEpocMS });
 
     savesHistory(movieScheduleUserData);
+};
+
+function getsYouTubeVideoTestingPurposes() {
+
+            addsMovieTrailerToElement("TbQm5doF_Uc");
+
 };
