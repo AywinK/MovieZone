@@ -10,11 +10,18 @@
   margin-top: 10px;
 }
 
+/*RESETS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/*GLOBAL CLASSES*/
 .main-body {
   display: flex;
   flex-direction: column;
-}
-
-*, body {
-  background-color: grey;
 }
