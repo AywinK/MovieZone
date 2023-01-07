@@ -21,7 +21,7 @@ function getOmdbAPIData(movieTitle) {
     var omdbAPIKey = "fac4214b";
     var baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`;
     var contentType = "type=movie&";
-    titleSearchUrl = baseUrl + `t=${movieTitle}&`;
+    titleSearchUrl = baseUrl + `t=${movieTitle}&` + contentType;
 
     $.get(titleSearchUrl)
         .then(function (OmdbDataObj) {
@@ -98,8 +98,8 @@ function getsYouTubeVideo(movieTitle) {
 function addsMovieTrailerToElement(videoId) {
     console.log("?????? youtube element where");
     $("#movie-trailer").html(`
-    <iframe width="900" height="600"
+    <iframe width="600" height="400"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>
     `)
-}
+};
