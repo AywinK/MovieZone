@@ -232,6 +232,13 @@ function addsToHistory(movieSaveDataObj) {
 // generates five day forecast section
 function generateCarousel() {
   var movieScheduleUserData = getsHistory();
+
+  console.log(!movieScheduleUserData.length);
+// if array empty, dont create carousel
+  if (!movieScheduleUserData.length) {
+    return
+  };
+
   var movieScheduleSection = $("#movieSchedule");
   var carouselHTML = `
   <div id="carouselIndicators" class="carousel slide">
@@ -342,7 +349,9 @@ function generateCarousel() {
 
   for (var i = 1; i < movieScheduleUserData.length; i++) {
     generateSlide(movieScheduleUserData[i], i)
-  }
+  };
+
+  movieScheduleSection.show();
 
 };
 
@@ -351,7 +360,7 @@ function generateCarousel() {
 
 console.log(getsHistory());
 
-$("#movie-info, #movie-trailer").hide();
+$("#movie-info, #movie-trailer, #movieSchedule").hide();
 
 generateCarousel();
 
