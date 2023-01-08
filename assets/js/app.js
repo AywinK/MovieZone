@@ -167,8 +167,8 @@ function addsMovieDataToElement(movieData) {
 };
 
 function getsYouTubeVideo(movieTitle, movieYear) {
-  // youtube api key for me: AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY;
-  var youtubeAPIKey = "key=AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY&";
+  // youtube api key for me: AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0;
+  var youtubeAPIKey = "key=AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0&";
   var partUrl = "part=snippet&"
   var maxReturnedResults = "maxResults=1&";
   var searchQuery = `q=${movieTitle}+${movieYear}+Official+Movie+Trailer&`
