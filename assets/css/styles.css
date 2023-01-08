@@ -14,3 +14,16 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.movie-info, .movie-trailer {
+  max-width: 400px;
+}
+
+.movieSchedule {
+  max-width: 800px;
+}
+
+.carousel-item {
+  max-width: 800px;
+  min-height: 400px;
+}
