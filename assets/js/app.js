@@ -1,21 +1,38 @@
 
-var searchSubmitEl = $("form #search[type=submit]");
+// ===========================================================================ON PAGE LOAD INITIAL===========================================================================
+(function init() {
+  var searchSubmitEl = $("form #search[type=submit]"); //add to init
 
-console.log("test");
+  console.log("test"); //add to init
+  
+  // using click listener because why does submit listener not work
+  searchSubmitEl.click(function (e) {
+    e.preventDefault();
+    var userInput = $("#search[type=text]");
+    var movieTitle = userInput.val();
+    if (movieTitle) {
+      console.log(movieTitle);
+      getOmdbAPIData(movieTitle);
+      userInput.val(``);
+  
+    }
+  
+  }); //add to init
 
-searchSubmitEl.click(function (e) {
-  e.preventDefault();
-  var userInput = $("#search[type=text]");
-  var movieTitle = userInput.val();
-  if (movieTitle) {
-    console.log(movieTitle);
-    getOmdbAPIData(movieTitle);
-    userInput.val(``);
+  console.log(getsHistory()); //add to init
 
-  }
+  // hides containers that are empty
+  $("#movie-info, #movie-trailer, #movieSchedule").hide(); //add to init
+  
+  // carousel with schedule adds to page unless no local storage data (processed in function)
+  generateCarousel(); //add to init
+}());
 
-});
 
+
+// ===========================================================================GLOBAL FUNCTIONS===========================================================================
+
+// gets data from omdb database using user input
 function getOmdbAPIData(movieTitle) {
 
   var omdbAPIKey = "fac4214b";
@@ -30,10 +47,11 @@ function getOmdbAPIData(movieTitle) {
       addsMovieDataToElement(movieData);
       getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
       // getsYouTubeVideoTestingPurposes();  //uncomment for testing
-    })
+    });
 
 }
 
+// simplifies omdb data obj
 function extractsDatafromOmdbDataObj(OmdbDataObj) {
   var movieData = {
     Title: OmdbDataObj.Title,
@@ -51,6 +69,7 @@ function extractsDatafromOmdbDataObj(OmdbDataObj) {
 
 };
 
+// adds movie data HTML and inner content/text to movie-info container
 function addsMovieDataToElement(movieData) {
   var movieInfoEl = $("#movie-info");
 
@@ -173,6 +192,7 @@ function addsMovieDataToElement(movieData) {
 
 };
 
+// gets first search result query using omdb title, year, genres
 function getsYouTubeVideo(movieTitle, movieYear, movieGenre) {
   // youtube api key for me: AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0;
   var youtubeAPIKey = "key=AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0&";
@@ -196,6 +216,7 @@ function getsYouTubeVideo(movieTitle, movieYear, movieGenre) {
 
 };
 
+// adds iframe with youtube trailer
 function addsMovieTrailerToElement(videoId) {
   console.log("?????? youtube element where");
 
@@ -236,7 +257,7 @@ function addsToHistory(movieSaveDataObj) {
   savesHistory(movieScheduleUserData);
 };
 
-// generates five day forecast section
+// generates movie schedule section carousel
 function generateCarousel() {
   var movieScheduleUserData = getsHistory();
 
@@ -350,10 +371,6 @@ function generateCarousel() {
     carouselBtnEl.append(slideBtnHTML);
   };
 
-  // for (var movieDataObj of movieScheduleUserData) {
-  //   generateSlide(movieDataObj);
-  // };
-
   for (var i = 1; i < movieScheduleUserData.length; i++) {
     generateSlide(movieScheduleUserData[i], i)
   };
@@ -365,12 +382,8 @@ function generateCarousel() {
 
 
 
-console.log(getsHistory());
 
-$("#movie-info, #movie-trailer, #movieSchedule").hide();
-
-generateCarousel();
-
+// used for testing purposes to not hit daily youtube api quota
 function getsYouTubeVideoTestingPurposes() {
 
   addsMovieTrailerToElement("TbQm5doF_Uc");
