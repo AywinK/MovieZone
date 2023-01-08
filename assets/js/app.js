@@ -241,7 +241,7 @@ function generateCarousel() {
 
   var movieScheduleSection = $("#movieSchedule");
   var carouselHTML = `
-  <div id="carouselIndicators" class="carousel slide">
+  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
       aria-current="true" aria-label="Slide 1"></button>
