@@ -4,59 +4,59 @@ var searchSubmitEl = $("form #search[type=submit]");
 console.log("test");
 
 searchSubmitEl.click(function (e) {
-    e.preventDefault();
-    var userInput = $("#search[type=text]");
-    var movieTitle = userInput.val();
-    if (movieTitle) {
-        console.log(movieTitle);
-        getOmdbAPIData(movieTitle);
-        userInput.val(``);
+  e.preventDefault();
+  var userInput = $("#search[type=text]");
+  var movieTitle = userInput.val();
+  if (movieTitle) {
+    console.log(movieTitle);
+    getOmdbAPIData(movieTitle);
+    userInput.val(``);
 
-    }
+  }
 
 });
 
 function getOmdbAPIData(movieTitle) {
 
-    var omdbAPIKey = "fac4214b";
-    var baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`;
-    var contentType = "type=movie&";
-    titleSearchUrl = baseUrl + `t=${movieTitle}&` + contentType;
+  var omdbAPIKey = "fac4214b";
+  var baseUrl = `https://www.omdbapi.com/?apikey=${omdbAPIKey}&`;
+  var contentType = "type=movie&";
+  titleSearchUrl = baseUrl + `t=${movieTitle}&` + contentType;
 
-    $.get(titleSearchUrl)
-        .then(function (OmdbDataObj) {
-            console.log(OmdbDataObj);
-            var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
-            addsMovieDataToElement(movieData);
-            // getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
-            getsYouTubeVideoTestingPurposes();  //uncomment for testing
-        })
+  $.get(titleSearchUrl)
+    .then(function (OmdbDataObj) {
+      console.log(OmdbDataObj);
+      var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
+      addsMovieDataToElement(movieData);
+      // getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
+      getsYouTubeVideoTestingPurposes();  //uncomment for testing
+    })
 
 }
 
 function extractsDatafromOmdbDataObj(OmdbDataObj) {
-    var movieData = {
-        Title: OmdbDataObj.Title,
-        Year: OmdbDataObj.Year,
-        Actors: OmdbDataObj.Actors,
-        Director: OmdbDataObj.Director,
-        Genre: OmdbDataObj.Genre,
-        Plot: OmdbDataObj.Plot,
-        Rating: OmdbDataObj.imdbRating,
-        Poster: OmdbDataObj.Poster,
-        Runtime: OmdbDataObj.Runtime
-    };
+  var movieData = {
+    Title: OmdbDataObj.Title,
+    Year: OmdbDataObj.Year,
+    Actors: OmdbDataObj.Actors,
+    Director: OmdbDataObj.Director,
+    Genre: OmdbDataObj.Genre,
+    Plot: OmdbDataObj.Plot,
+    Rating: OmdbDataObj.imdbRating,
+    Poster: OmdbDataObj.Poster,
+    Runtime: OmdbDataObj.Runtime
+  };
 
-    return movieData
+  return movieData
 
 };
 
 function addsMovieDataToElement(movieData) {
-    var movieInfoEl = $("#movie-info");
+  var movieInfoEl = $("#movie-info");
 
-    movieInfoEl.html(``);
+  movieInfoEl.html(``);
 
-    var modalHTML = `<div id="modal-container" class="">
+  var modalHTML = `<div id="modal-container" class="">
     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
       <i class="fa-solid fa-clock fs-4"></i><br><span></span>
     </button>
@@ -109,7 +109,7 @@ function addsMovieDataToElement(movieData) {
     </div>
   </div>`;
 
-    movieInfoEl.html(`
+  movieInfoEl.html(`
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
         <h1><u>${movieData.Title}</u></h1>
@@ -124,112 +124,239 @@ function addsMovieDataToElement(movieData) {
     </div>
     `);
 
-    movieInfoEl.show();
+  movieInfoEl.show();
 
-    $("#watchDate").datepicker();
+  $("#watchDate").datepicker();
 
-    $("#watchLaterForm").submit(submitsFormActions);
+  $("#watchLaterForm").submit(submitsFormActions);
 
-    function submitsFormActions(e) {
-        e.preventDefault();
+  function submitsFormActions(e) {
+    e.preventDefault();
 
-        var viewingpartymembersVal = $("#viewingpartymembers").val();
-        var locationVal = $("#location").val();
-        var addInfoVal = $("#addInfo").val();
-        var currentDate = $("#watchDate").datepicker("getDate");
+    var viewingpartymembersVal = $("#viewingpartymembers").val();
+    var locationVal = $("#location").val();
+    var addInfoVal = $("#addInfo").val();
+    var currentDate = $("#watchDate").datepicker("getDate");
 
-        var epocMillisecondsTime = currentDate.getTime();
+    var epocMillisecondsTime = currentDate.getTime();
 
-        console.log([viewingpartymembersVal, locationVal, addInfoVal, epocMillisecondsTime]);
-        movieInfoEl.html(``);
-        movieInfoEl.hide();
+    console.log([viewingpartymembersVal, locationVal, addInfoVal, epocMillisecondsTime]);
+    movieInfoEl.html(``);
+    movieInfoEl.hide();
 
-        var movieTrailerEl = $("#movie-trailer");
-        movieTrailerEl.html(``);
-        movieTrailerEl.hide();
+    var movieTrailerEl = $("#movie-trailer");
+    movieTrailerEl.html(``);
+    movieTrailerEl.hide();
 
-        var movieSaveDataObj = {
-            Title: movieData.Title,
-            Runtime: movieData.Runtime,
-            Plot: movieData.Plot,
-            WatchBuddies: viewingpartymembersVal,
-            WatchLocation: locationVal,
-            DateEpocMS: epocMillisecondsTime,
-            AddInfo: addInfoVal,
-            Poster: movieData.Poster
-        };
+    var movieSaveDataObj = {
+      Title: movieData.Title,
+      Runtime: movieData.Runtime,
+      Plot: movieData.Plot,
+      WatchBuddies: viewingpartymembersVal,
+      WatchLocation: locationVal,
+      DateEpocMS: epocMillisecondsTime,
+      AddInfo: addInfoVal,
+      Poster: movieData.Poster
+    };
 
-        addsToHistory(movieSaveDataObj);
+    addsToHistory(movieSaveDataObj);
+    generateCarousel();
 
-    }
+  }
 
 };
 
 function getsYouTubeVideo(movieTitle, movieYear) {
-    // youtube api key for me: AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY;
-    var youtubeAPIKey = "key=AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY&";
-    var partUrl = "part=snippet&"
-    var maxReturnedResults = "maxResults=1&";
-    var searchQuery = `q=${movieTitle}+${movieYear}+Official+Movie+Trailer&`
-    var contentTypeSearched = "type=video&"
-    var baseUrl = "https://www.googleapis.com/youtube/v3/search?"
+  // youtube api key for me: AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY;
+  var youtubeAPIKey = "key=AIzaSyBk_PKFmfz9fvPSYTjkMAujTUcryc-tmJY&";
+  var partUrl = "part=snippet&"
+  var maxReturnedResults = "maxResults=1&";
+  var searchQuery = `q=${movieTitle}+${movieYear}+Official+Movie+Trailer&`
+  var contentTypeSearched = "type=video&"
+  var baseUrl = "https://www.googleapis.com/youtube/v3/search?"
 
-    var searchRequestUrl = baseUrl + youtubeAPIKey + partUrl + maxReturnedResults + searchQuery + contentTypeSearched;
+  var searchRequestUrl = baseUrl + youtubeAPIKey + partUrl + maxReturnedResults + searchQuery + contentTypeSearched;
 
-    console.log(searchQuery);
+  console.log(searchQuery);
 
-    $.get(searchRequestUrl)
-        .then(function (youtubeDataObj) {
-            console.log(youtubeDataObj);
-            console.log(youtubeDataObj.items[0].id.videoId);
-            var videoId = youtubeDataObj.items[0].id.videoId;
-            addsMovieTrailerToElement(videoId);
-        })
+  $.get(searchRequestUrl)
+    .then(function (youtubeDataObj) {
+      console.log(youtubeDataObj);
+      console.log(youtubeDataObj.items[0].id.videoId);
+      var videoId = youtubeDataObj.items[0].id.videoId;
+      addsMovieTrailerToElement(videoId);
+    })
 
 };
 
 function addsMovieTrailerToElement(videoId) {
-    console.log("?????? youtube element where");
+  console.log("?????? youtube element where");
 
-    var movieTrailerEl = $("#movie-trailer");
+  var movieTrailerEl = $("#movie-trailer");
 
-    movieTrailerEl.html(``);
+  movieTrailerEl.html(``);
 
-    movieTrailerEl.html(`
+  movieTrailerEl.html(`
     <iframe style="width: 100%; height: 100%;" class="p-2"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>
     `);
-    movieTrailerEl.show();
+  movieTrailerEl.show();
 };
 
 // gets history from local storage
 function getsHistory() {
-    return JSON.parse(localStorage.getItem("movieScheduleUserData")) || [];
+  return JSON.parse(localStorage.getItem("movieScheduleUserData")) || [];
 };
 
 // saves history to local storage
 function savesHistory(arr) {
-    localStorage.setItem("movieScheduleUserData", JSON.stringify(arr));
+  localStorage.setItem("movieScheduleUserData", JSON.stringify(arr));
 };
 
 // adds valid search term to history array
 function addsToHistory(movieSaveDataObj) {
 
-    console.log("hello????");
+  console.log("hello????");
 
-    var movieScheduleUserData = getsHistory();
+  var movieScheduleUserData = getsHistory();
 
-    movieScheduleUserData.push(movieSaveDataObj);
+  movieScheduleUserData.push(movieSaveDataObj);
 
-    // sorts arr earliest to latest date schedule using epoc time in ms before saving to local storage
-    movieScheduleUserData.sort(function (a, b) { return a.DateEpocMS - b.DateEpocMS });
+  // sorts arr earliest to latest date schedule using epoc time in ms before saving to local storage
+  movieScheduleUserData.sort(function (a, b) { return a.DateEpocMS - b.DateEpocMS });
 
-    savesHistory(movieScheduleUserData);
+  savesHistory(movieScheduleUserData);
 };
+
+// generates five day forecast section
+function generateCarousel() {
+  var movieScheduleUserData = getsHistory();
+  var movieScheduleSection = $("#movieSchedule");
+  var carouselHTML = `
+  <div id="carouselIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+  </div>
+  <div class="carousel-inner" style="border-radius: 0.8em;">
+    <div class="carousel-item active p-2 container-fluid" style="
+      background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieScheduleUserData[0].Poster});
+      background-size: cover;
+      background-repeat: no-repeat;
+      ">
+      <div class="row my-3">
+      <div class="col-12">
+        <h2 class="text-center fs-1"><u>${movieScheduleUserData[0].Title}</u></h2>
+      </div>
+    </div>
+    <div class="row my-3 fs-3">
+      <div class="col-6 text-start"><p><u>Runtime</u>: <span>${movieScheduleUserData[0].Runtime}</span></p></div>
+      <div class="col-6 text-end"><p>${moment(movieScheduleUserData[0].DateEpocMS).format("Do MMM YYYY")}</p></div>
+    </div>
+    <div class="row my-3">
+      <div class="col-12 text-start">
+        <p>${movieScheduleUserData[0].Plot}</p>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-6 text-start"><p class="fs-3"><u>People</u>:</p> <p>${movieScheduleUserData[0].WatchBuddies}</p></div>
+      <div class="col-6 text-end"><p class="fs-3"><u>Location</u>:</p> <p>${movieScheduleUserData[0].WatchLocation}</p></div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="fs-3"><u>Additional Info</u>:</p>
+        <p>
+        ${movieScheduleUserData[0].AddInfo}
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+    data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+    data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  `
+  movieScheduleSection.html(carouselHTML);
+
+  // generates individual slides for each data point
+  function generateSlide(movieDataObj, i) {
+    var carouselEl = $(".carousel-inner");
+    var slideHTML = `
+    <div class="carousel-item p-2 container-fluid" style="
+      background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieDataObj.Poster});
+      background-size: cover;
+      background-repeat: no-repeat;
+      ">
+      <div class="row my-3">
+      <div class="col-12">
+        <h2 class="text-center fs-1"><u>${movieDataObj.Title}</u></h2>
+      </div>
+    </div>
+    <div class="row my-3 fs-3">
+      <div class="col-6 text-start"><p><u>Runtime</u>: <span>${movieDataObj.Runtime}</span></p></div>
+      <div class="col-6 text-end"><p>${moment(movieDataObj.DateEpocMS).format("Do MMM YYYY")}</p></div>
+    </div>
+    <div class="row my-3">
+      <div class="col-12 text-start">
+        <p>${movieDataObj.Plot}</p>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-6 text-start"><p class="fs-3"><u>People</u>:</p> <p>${movieDataObj.WatchBuddies}</p></div>
+      <div class="col-6 text-end"><p class="fs-3"><u>Location</u>:</p> <p>${movieDataObj.WatchLocation}</p></div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="fs-3"><u>Additional Info</u>:</p>
+        <p>
+        ${movieDataObj.AddInfo}
+        </p>
+      </div>
+    </div>
+    </div>
+      `;
+
+    carouselEl.append(slideHTML);
+
+    var carouselBtnEl = $(".carousel-indicators")
+    var slideBtnHTML = `
+    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="${i}"
+    aria-label="Slide ${i+1}"></button>
+    `;
+
+    carouselBtnEl.append(slideBtnHTML);
+  };
+
+  // for (var movieDataObj of movieScheduleUserData) {
+  //   generateSlide(movieDataObj);
+  // };
+
+  for (var i = 1; i < movieScheduleUserData.length; i++) {
+    generateSlide(movieScheduleUserData[i], i)
+  }
+
+};
+
+
+
+
+console.log(getsHistory());
+
+$("#movie-info, #movie-trailer").hide();
+
+generateCarousel();
 
 function getsYouTubeVideoTestingPurposes() {
 
-            addsMovieTrailerToElement("TbQm5doF_Uc");
+  addsMovieTrailerToElement("TbQm5doF_Uc");
 
 };
