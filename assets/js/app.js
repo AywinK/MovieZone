@@ -28,8 +28,8 @@ function getOmdbAPIData(movieTitle) {
       console.log(OmdbDataObj);
       var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
       addsMovieDataToElement(movieData);
-      getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
-      // getsYouTubeVideoTestingPurposes();  //uncomment for testing
+      // getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
+      getsYouTubeVideoTestingPurposes();  //uncomment for testing
     })
 
 }
@@ -57,9 +57,11 @@ function addsMovieDataToElement(movieData) {
   movieInfoEl.html(``);
 
   var modalHTML = `<div id="modal-container" class="">
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
-      <i class="fa-solid fa-clock fs-4"></i><br><span></span>
-    </button>
+    <span data-toggle="tooltip" data-placement="left" title="Watch Later">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
+        <i class="fa-solid fa-clock fs-4"></i><br><span></span>
+      </button>
+    </span>
 
     <div class="modal fade" id="watchLaterModal" tabindex="-1" aria-labelledby="watchLaterModalLabel"
       style="display: none;" aria-hidden="true">
@@ -124,6 +126,11 @@ function addsMovieDataToElement(movieData) {
     </div>
     `);
 
+  // initialises all tooltips on webpage
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
   movieInfoEl.show();
 
   $("#watchDate").datepicker();
@@ -166,7 +173,7 @@ function addsMovieDataToElement(movieData) {
 
 };
 
-function getsYouTubeVideo(movieTitle, movieYear,movieGenre) {
+function getsYouTubeVideo(movieTitle, movieYear, movieGenre) {
   // youtube api key for me: AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0;
   var youtubeAPIKey = "key=AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0&";
   var partUrl = "part=snippet&"
@@ -234,7 +241,7 @@ function generateCarousel() {
   var movieScheduleUserData = getsHistory();
 
   console.log(!movieScheduleUserData.length);
-// if array empty, dont create carousel
+  // if array empty, dont create carousel
   if (!movieScheduleUserData.length) {
     return
   };
@@ -337,7 +344,7 @@ function generateCarousel() {
     var carouselBtnEl = $(".carousel-indicators")
     var slideBtnHTML = `
     <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="${i}"
-    aria-label="Slide ${i+1}"></button>
+    aria-label="Slide ${i + 1}"></button>
     `;
 
     carouselBtnEl.append(slideBtnHTML);
