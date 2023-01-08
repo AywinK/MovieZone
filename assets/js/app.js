@@ -28,7 +28,7 @@ function getOmdbAPIData(movieTitle) {
       console.log(OmdbDataObj);
       var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
       addsMovieDataToElement(movieData);
-      getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
+      getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
       // getsYouTubeVideoTestingPurposes();  //uncomment for testing
     })
 
@@ -166,12 +166,12 @@ function addsMovieDataToElement(movieData) {
 
 };
 
-function getsYouTubeVideo(movieTitle, movieYear) {
+function getsYouTubeVideo(movieTitle, movieYear,movieGenre) {
   // youtube api key for me: AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0;
   var youtubeAPIKey = "key=AIzaSyCvt8qoMgErebwKDBgn5-uMxfZ8KjTdN_0&";
   var partUrl = "part=snippet&"
   var maxReturnedResults = "maxResults=1&";
-  var searchQuery = `q=${movieTitle}+${movieYear}+Official+Movie+Trailer&`
+  var searchQuery = `q=${movieTitle}+${movieYear}+${movieGenre}+Official+Movie+Trailer&`
   var contentTypeSearched = "type=video&"
   var baseUrl = "https://www.googleapis.com/youtube/v3/search?"
 
