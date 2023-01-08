@@ -28,8 +28,8 @@ function getOmdbAPIData(movieTitle) {
       console.log(OmdbDataObj);
       var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
       addsMovieDataToElement(movieData);
-      // getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
-      getsYouTubeVideoTestingPurposes();  //uncomment for testing
+      getsYouTubeVideo(movieData.Title, movieData.Year);  //uncomment to enable youtube api
+      // getsYouTubeVideoTestingPurposes();  //uncomment for testing
     })
 
 }
