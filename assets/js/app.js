@@ -160,6 +160,7 @@ function addsMovieDataToElement(movieData) {
     };
 
     addsToHistory(movieSaveDataObj);
+    generateCarousel();
 
   }
 
@@ -239,12 +240,37 @@ function generateCarousel() {
       aria-current="true" aria-label="Slide 1"></button>
   </div>
   <div class="carousel-inner" style="border-radius: 0.8em;">
-    <div class="carousel-item active p-5" style="
-      background-image: linear-gradient(to left, rgba(8, 8, 8, 0.1), rgba(0, 0, 0,0.1)), url(${movieScheduleUserData[0].Poster});
-      background-size: 100% 100%;
+    <div class="carousel-item active p-2 container-fluid" style="
+      background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieScheduleUserData[0].Poster});
+      background-size: cover;
       background-repeat: no-repeat;
       ">
-      <p>test</p>
+      <div class="row my-3">
+      <div class="col-12">
+        <h2 class="text-center fs-1"><u>${movieScheduleUserData[0].Title}</u></h2>
+      </div>
+    </div>
+    <div class="row my-3 fs-3">
+      <div class="col-6 text-start"><p><u>Runtime</u>: <span>${movieScheduleUserData[0].Runtime}</span></p></div>
+      <div class="col-6 text-end"><p>${moment(movieScheduleUserData[0].DateEpocMS).format("Do MMM YYYY")}</p></div>
+    </div>
+    <div class="row my-3">
+      <div class="col-12 text-start">
+        <p>${movieScheduleUserData[0].Plot}</p>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-6 text-start"><p class="fs-3"><u>People</u>:</p> <p>${movieScheduleUserData[0].WatchBuddies}</p></div>
+      <div class="col-6 text-end"><p class="fs-3"><u>Location</u>:</p> <p>${movieScheduleUserData[0].WatchLocation}</p></div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="fs-3"><u>Additional Info</u>:</p>
+        <p>
+        ${movieScheduleUserData[0].AddInfo}
+        </p>
+      </div>
+    </div>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
@@ -265,12 +291,37 @@ function generateCarousel() {
   function generateSlide(movieDataObj, i) {
     var carouselEl = $(".carousel-inner");
     var slideHTML = `
-    <div class="carousel-item p-5" style="
-      background-image: linear-gradient(to left, rgba(8, 8, 8, 0.1), rgba(0, 0, 0,0.1)), url(${movieDataObj.Poster});
-      background-size: 100% 100%;
+    <div class="carousel-item p-2 container-fluid" style="
+      background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieDataObj.Poster});
+      background-size: cover;
       background-repeat: no-repeat;
       ">
-      <p>test</p>
+      <div class="row my-3">
+      <div class="col-12">
+        <h2 class="text-center fs-1"><u>${movieDataObj.Title}</u></h2>
+      </div>
+    </div>
+    <div class="row my-3 fs-3">
+      <div class="col-6 text-start"><p><u>Runtime</u>: <span>${movieDataObj.Runtime}</span></p></div>
+      <div class="col-6 text-end"><p>${moment(movieDataObj.DateEpocMS).format("Do MMM YYYY")}</p></div>
+    </div>
+    <div class="row my-3">
+      <div class="col-12 text-start">
+        <p>${movieDataObj.Plot}</p>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-6 text-start"><p class="fs-3"><u>People</u>:</p> <p>${movieDataObj.WatchBuddies}</p></div>
+      <div class="col-6 text-end"><p class="fs-3"><u>Location</u>:</p> <p>${movieDataObj.WatchLocation}</p></div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="fs-3"><u>Additional Info</u>:</p>
+        <p>
+        ${movieDataObj.AddInfo}
+        </p>
+      </div>
+    </div>
     </div>
       `;
 
@@ -293,13 +344,14 @@ function generateCarousel() {
     generateSlide(movieScheduleUserData[i], i)
   }
 
-  movieScheduleSection.addClass("customBorder"); // styling
 };
 
 
 
 
 console.log(getsHistory());
+
+$("#movie-info, #movie-trailer").hide();
 
 generateCarousel();
 

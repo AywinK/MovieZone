@@ -20,10 +20,9 @@ body {
 }
 
 .movieSchedule {
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .carousel-item {
-  max-width: 800px;
   min-height: 400px;
 }
