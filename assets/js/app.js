@@ -45,8 +45,8 @@ function getOmdbAPIData(movieTitle) {
       console.log(OmdbDataObj);
       var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
       addsMovieDataToElement(movieData);
-      getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
-      // getsYouTubeVideoTestingPurposes();  //uncomment for testing
+      // getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
+      getsYouTubeVideoTestingPurposes();  //uncomment for testing
     });
 
 }
@@ -374,8 +374,37 @@ function generateCarousel() {
   for (var i = 1; i < movieScheduleUserData.length; i++) {
     generateSlide(movieScheduleUserData[i], i)
   };
-
+// carousel must be shown before height and width can be set
   movieScheduleSection.show();
+
+  function getMaxWidth() {
+    var maxWidth = 0;
+    $(".carousel-inner").each(function(){
+        var currentWidth = parseInt($(this).width());
+        if (currentWidth > maxWidth) {
+            maxWidth = currentWidth;
+        }
+    });
+    return maxWidth;
+}
+
+function getMaxHeight() {
+  var maxHeight = 0;
+  $(".carousel-item").each(function(){
+      var currentHeight = parseInt($(this).height());
+      if (currentHeight > maxHeight) {
+          maxHeight = currentHeight;
+      }
+  });
+  return maxHeight;
+}
+
+console.log([getMaxHeight(), getMaxWidth()]);
+
+var carouselSlide_classSelector = $(".carousel-item");
+
+carouselSlide_classSelector.css("width", `${getMaxWidth()}px`); //DO NOT ADD !important - wont work. works otherwise
+carouselSlide_classSelector.css("height", `${getMaxHeight()}px`); //DO NOT ADD !important - wont work. works otherwise
 
 };
 
