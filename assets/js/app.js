@@ -133,7 +133,7 @@ function addsMovieDataToElement(movieData) {
   movieInfoEl.html(`
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-        <h1><u>${movieData.Title}</u></h1>
+        <h2 class="fs-1"><u>${movieData.Title}</u></h2>
         ${modalHTML}
         </div>
         <p>Year: ${movieData.Year}</p>
@@ -225,7 +225,7 @@ function addsMovieTrailerToElement(videoId) {
   movieTrailerEl.html(``);
 
   movieTrailerEl.html(`
-    <iframe style="width: 100%; height: 100%;" class="p-2"
+    <iframe style="width: 100%; height: 100%;" class="p-2 my-2"
     src="https://www.youtube.com/embed/${videoId}">
     </iframe>
     `);
