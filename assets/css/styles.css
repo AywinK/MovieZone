@@ -12,15 +12,16 @@ body {
 }
 
 /* Footer styling */
-#socials img {
+#socials i {
+  font-size: 2em !important;
   transition: 1.2s !important;
-  border-radius: 70%;
+  border-radius: 25%;
 }
 
-#socials img:hover {
+#socials i:hover {
   transition: 1.2s !important;
   transform: scale(1.5) !important;
-  box-shadow: .15em .15em .15em .15em #c8a2c8 inset !important;
+  box-shadow: 0.1em 0.05em 0.05em #89C5FE;
 }
 
 /*GLOBAL CLASSES*/
