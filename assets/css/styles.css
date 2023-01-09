@@ -1,4 +1,3 @@
-
 /* RESETS
 * {
   margin: 0;
@@ -11,13 +10,27 @@ body {
   background-color: #343434;
   color: #f3f3f3;
 }
+
+/* Footer styling */
+#socials img {
+  transition: 1.2s !important;
+  border-radius: 70%;
+}
+
+#socials img:hover {
+  transition: 1.2s !important;
+  transform: scale(1.5) !important;
+  box-shadow: .15em .15em .15em .15em #c8a2c8 inset !important;
+}
+
 /*GLOBAL CLASSES*/
 .main-body {
   display: flex;
   flex-direction: column;
 }
 
-.movie-info, .movie-trailer {
+.movie-info,
+.movie-trailer {
   max-width: 400px;
 }
 
