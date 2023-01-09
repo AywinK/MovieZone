@@ -1,27 +1,44 @@
-.randomImgContainer {
-  background-image: url(https://api.lorem.space/image/movie?w=500&h=500),
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
-  height: 50vh;
-  width: 50vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  font-size: 5em;
-  margin-top: 10px;
-}
-
-/*RESETS*/
+/* RESETS
 * {
   margin: 0;
   padding: 0;
   box-sizing: content-box;
-}
+} */
 
 body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #343434;
+  color: #f3f3f3;
 }
+
+/* Footer styling */
+#socials i {
+  font-size: 2em !important;
+  transition: 1.2s !important;
+  border-radius: 25%;
+}
+
+#socials i:hover {
+  transition: 1.2s !important;
+  transform: scale(1.5) !important;
+  box-shadow: 0.1em 0.05em 0.05em #89C5FE;
+}
+
 /*GLOBAL CLASSES*/
 .main-body {
   display: flex;
   flex-direction: column;
+}
+
+.movie-info,
+.movie-trailer {
+  max-width: 400px;
+}
+
+.movieSchedule {
+  max-width: 600px;
+}
+
+.carousel-item {
+  min-height: 400px;
 }
