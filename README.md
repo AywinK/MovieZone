@@ -6,6 +6,7 @@ Repository contains a quality README file with description, screenshot, and link
 ## Table of Contents
 
 * [Deployed Page](#deployedPage)
+* [User story](#user-story)
 * [Usage](#usage)
 * [Credits](#credits)
 * [License](#license)
@@ -20,7 +21,7 @@ As a movie enthusiast I want to know all about the movies I like. I want to sear
 
 ## Usage 
 
-Provide instructions and examples for use. Include screenshots as needed. 
+The webpage allows you to search the OMDB database
 
 To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
@@ -31,11 +32,15 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Aywin: https://github.com/AywinK
+Inna:  https://github.com/innonka
+Sofie: https://github.com/sofie-ventzel
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. AKA list the API we are using?
+links to API used: 
+OMDB: http://www.omdbapi.com/ 
 
-If you followed tutorials, include links to those here as well.
+
+Tutorials:
 
 
 ## License

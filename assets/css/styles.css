@@ -18,10 +18,16 @@
 }
 
 body {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: sans-serif;
 }
+
 /*GLOBAL CLASSES*/
 .main-body {
   display: flex;
   flex-direction: column;
+}
+
+/*CUSTOM STYLES*/
+*, body {
+  background-color: rgb(37, 37, 37);
 }
