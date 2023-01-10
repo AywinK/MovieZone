@@ -1,8 +1,6 @@
 # Project_1 
 # What to Watch
 
-Repository contains a quality README file with description, screenshot, and link to deployed application.
-
 ## Table of Contents
 
 * [Deployed Page](#deployedPage)
@@ -17,18 +15,13 @@ Repository contains a quality README file with description, screenshot, and link
 -- insert link here --
 
 ## User story
-As a movie enthusiast I want to know all about the movies I like. I want to search for movies to watch and save my favourites to a list, so I can better keep track of what to watch.
+As a movie enthusiast,
+I want to search for movies to watch and create a schedule,
+So that I can better organise my time to watch as many movies as possible!
 
 ## Usage 
 
-The webpage allows you to search the OMDB database
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-```md
-![alt text](assets/images/screenshot.png)
-```
-
+The webpage allows you to search the OMDB database, click in the search bar and type in the movie you want to know more about. Click search, and watch as the page loads. Here you see info about the movie, and the trailer for the movie.
 
 ## Credits
 Collaborators:
