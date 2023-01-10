@@ -86,3 +86,9 @@ i {
 input::placeholder {
   text-align: center;
 }
+
+/* MODAL STYLES */
+.modal-title,
+.modal-body {
+  color: black;
+}
