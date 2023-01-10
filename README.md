@@ -1,19 +1,18 @@
-# Project_1 
-# What to Watch
+# MovieZone
 
 ## Table of Contents
 
 * [Deployed Page](#deployedPage)
-* [User story](#userStory)
+* [User story](#user-story)
 * [Usage](#usage)
-* [Acceptance Criteria](#acceptanceCriteria)
+* [Acceptance Criteria](#acceptance-criteria)
 * [Credits](#credits)
+* [Technologies used](#technologies-used)
 * [License](#license)
 
 
 ## Deployed page
-
--- insert link here --
+https://aywink.github.io/MovieZone/
 
 ## User story
 As a movie enthusiast,
@@ -43,7 +42,8 @@ THEN I am presented with the following details about the movies I have decided t
 * Viewing Date
 * Location where I will watch the movie, e.g. the cinema or an online  streaming site link
 * Who I will watch the movies with, e.g. friends, family, .etc.
-* Any other additional information such as when I will watch the movie
+* Any other additional information, such as when I will watch the movie
+
 WHEN I search for a movie title
 THEN I am presented with the movie trailer and information about the movie i.e.:
 * Release Year
@@ -68,6 +68,8 @@ OMDB: http://www.omdbapi.com/
 Youtube: https://developers.google.com/youtube
 
 Tutorials:
+
+## Technologies used
 
 
 ## License
