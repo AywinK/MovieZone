@@ -46,15 +46,23 @@ function getOmdbAPIData(movieTitle) {
   var contentType = "type=movie&";
   titleSearchUrl = baseUrl + `t=${movieTitle}&` + contentType;
 
-  $.get(titleSearchUrl)
-    .then(function (OmdbDataObj) {
-      console.log(OmdbDataObj);
+  $.get(titleSearchUrl).then(function (OmdbDataObj) {
+    // if there is no movie with given title, show message to user
+    if (OmdbDataObj == null || OmdbDataObj.Response === "False") {
+      var mainModal = new bootstrap.Modal(document.getElementById("mainModal"));
+      $("#mainModalLabel").html("Error");
+      $("#mainModalBody").html(
+        "No movie found with title '" + movieTitle + "'"
+      );
+
+      mainModal.show();
+    } else {
       var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
       addsMovieDataToElement(movieData);
-      getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre);  //uncomment to enable youtube api
+      getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre); //uncomment to enable youtube api
       // getsYouTubeVideoTestingPurposes();  //uncomment for testing
-    });
-
+    }
+  });
 }
 
 // simplifies omdb data obj
