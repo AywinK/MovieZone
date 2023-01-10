@@ -1,6 +1,12 @@
 
 // ===========================================================================ON PAGE LOAD INITIAL===========================================================================
 (function init() {
+
+  // stop redirecting since hyperlinks are placeholder only
+  $("footer a").click(function (e) {
+    e.preventDefault();
+  } );
+
   var searchSubmitEl = $("form #search[type=submit]"); //add to init
 
   console.log("test"); //add to init

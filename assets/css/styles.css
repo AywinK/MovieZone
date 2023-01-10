@@ -70,11 +70,12 @@
 
 /* GLOBAL TAGS */
 
-body {
+body, main {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.9)), url(../images/cinema_bg.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed; /* makes linear gradient take up whole page - same as the image with bg-size: cover */
   color: var(--colorText);
 }
 
