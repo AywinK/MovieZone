@@ -31,14 +31,14 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 
 ## Credits
-
+Collaborators:
 Aywin: https://github.com/AywinK
 Inna:  https://github.com/innonka
 Sofie: https://github.com/sofie-ventzel
 
 links to API used: 
 OMDB: http://www.omdbapi.com/ 
-
+Youtube: https://developers.google.com/youtube
 
 Tutorials:
 
