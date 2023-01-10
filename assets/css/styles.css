@@ -1,30 +1,90 @@
-.randomImgContainer {
-  background-image: url(https://api.lorem.space/image/movie?w=500&h=500),
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
-  height: 50vh;
-  width: 50vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  font-size: 5em;
-  margin-top: 10px;
+/* VARIABLES */
+
+:root {
+  --colorBg: #343434;
+  --colorText: #f3f3f3;
+  --colorAccent: #89C5FE;
 }
 
-/*RESETS*/
+/* RESETS
 * {
   margin: 0;
   padding: 0;
   box-sizing: content-box;
+} */
+
+
+/* STYLES BY ID */
+#socials i {
+  font-size: 2em !important;
+  transition: 1.2s !important;
+  border-radius: 25%;
 }
 
-body {
-  font-family: sans-serif;
+#socials i:hover {
+  transition: 1.2s !important;
+  transform: scale(1.5) !important;
+  box-shadow: 0.1em 0.05em 0.05em var(--color_1);
+}
+
+#movie-info h2 {
+  /* color: var(--colorAccent); */
+  text-shadow: 0.06em 0.06em var(--colorAccent);
+}
+
+#movie-info span button  {
+  background-color: var(--colorBg) !important;
+  opacity: 0.85;
 }
 
 /*GLOBAL CLASSES*/
-.main-body {
+/* .main-body {
   display: flex;
   flex-direction: column;
+} */
+
+/* .movie-info,
+.movie-trailer {
+  max-width: 400px;
+} */
+
+.movieSchedule {
+  max-width: 600px;
+}
+
+.carousel-item {
+  min-height: 400px;
+}
+
+.customBorder {
+  border: solid var(--colorAccent);
+  border-radius: 0.8em;
+  border-width: 1px;
+}
+
+.customBg {
+  background-image: linear-gradient(-45deg, rgba(214, 214, 214, 0.3), var(--colorBg)) !important;
+  background-image: radial-gradient(ellipse at top, rgba(214, 214, 214, 0.2), transparent),
+            radial-gradient(ellipse at bottom, rgb(52, 52, 52), transparent) !important;
+}
+
+/* GLOBAL TAGS */
+
+body, main {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0,0.9)), url(../images/cinema_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; /* makes linear gradient take up whole page - same as the image with bg-size: cover */
+  color: var(--colorText);
+}
+
+i {
+ color: var(--colorAccent);
+}
+
+input::placeholder {
+  text-align: center;
 }
 
 /*CUSTOM STYLES*/
