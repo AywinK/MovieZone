@@ -1,19 +1,18 @@
-# Project_1 
-# What to Watch
+# MovieZone
 
 ## Table of Contents
 
 * [Deployed Page](#deployedPage)
-* [User story](#userStory)
+* [User story](#user-story)
 * [Usage](#usage)
-* [Acceptance Criteria](#acceptanceCriteria)
+* [Acceptance Criteria](#acceptance-criteria)
 * [Credits](#credits)
+* [Technologies used](#technologies-used)
 * [License](#license)
 
 
 ## Deployed page
-
--- insert link here --
+https://aywink.github.io/MovieZone/
 
 ## User story
 As a movie enthusiast,
@@ -34,7 +33,9 @@ When you access the site from a mobile, the sections realign themselves as colou
 
 ## Acceptance criteria
 GIVEN a movie dashboard web application
+
 WHEN the page loads
+
 THEN I am presented with the following details about the movies I have decided to watch later with a polished and responsive UI:
 * Movie Title
 * Movie Poster background
@@ -43,8 +44,10 @@ THEN I am presented with the following details about the movies I have decided t
 * Viewing Date
 * Location where I will watch the movie, e.g. the cinema or an online  streaming site link
 * Who I will watch the movies with, e.g. friends, family, .etc.
-* Any other additional information such as when I will watch the movie
+* Any other additional information, such as when I will watch the movie
+
 WHEN I search for a movie title
+
 THEN I am presented with the movie trailer and information about the movie i.e.:
 * Release Year
 * Actors
@@ -52,22 +55,28 @@ THEN I am presented with the movie trailer and information about the movie i.e.:
 * Genre
 * Plot
 * Omdb Rating
+
 WHEN I have decided to watch a movie later
+
 THEN I am presented with a form that will allow me to add information to organise a movie viewing event
+
 WHEN I add the movie viewing events to the watch list
+
 THEN the events are persistently saved and can be viewed later after reopening/reloading the web application
 
 ## Credits
 Collaborators:
-Aywin: https://github.com/AywinK
-Inna:  https://github.com/innonka
-Sofie: https://github.com/sofie-ventzel
+- Aywin: https://github.com/AywinK
+- Inna:  https://github.com/innonka
+- Sofie: https://github.com/sofie-ventzel
 
 links to API used: 
-OMDB: http://www.omdbapi.com/ 
-Youtube: https://developers.google.com/youtube
+- OMDB: http://www.omdbapi.com/ 
+- Youtube: https://developers.google.com/youtube
 
 Tutorials:
+
+## Technologies used
 
 
 ## License
