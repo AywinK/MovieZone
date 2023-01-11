@@ -99,6 +99,9 @@ function addsMovieDataToElement(movieData) {
   $("#movieDataPlotSpan").html(movieData.Plot);
   $("#movieDataRating").html(movieData.Rating);
 
+  var backgroundStyle = `linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieData.Poster})`;
+  $("#modalBody").css("background-image",backgroundStyle);
+  
   // initialises all tooltips on webpage
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
