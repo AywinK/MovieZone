@@ -126,7 +126,6 @@ function addsMovieDataToElement(movieData) {
     var epocMillisecondsTime = currentDate.getTime();
 
     console.log([viewingpartymembersVal, locationVal, addInfoVal, epocMillisecondsTime]);
-    movieInfoEl.html(``);
     movieInfoEl.hide();
 
     var movieTrailerEl = $("#movie-trailer");
