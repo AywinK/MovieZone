@@ -75,9 +75,20 @@ links to API used:
 - Youtube: https://developers.google.com/youtube
 
 Tutorials:
+- W3Schools - https://www.w3schools.com/js/default.asp
+- MDN Documentation - https://developer.mozilla.org/en-US/
+- Stack Overflow threads - https://stackoverflow.com/
+- JavaScript: The Definitive Guide, 7th Edition by David Flanagan - ISBN: 9781491952023
+- jQuery Cheat Sheet - https://htmlcheatsheet.com/jquery/
+- Moment.js Documentation - https://momentjs.com/docs/
+- jQuery UI autocomplete Documentation - https://api.jqueryui.com/autocomplete/
+- jQuery Documentation - https://api.jquery.com/
+- Bootstrap Documentation - https://getbootstrap.com/docs/5.2/getting-started/introduction/
+- YouTube carousel tutorials - https://www.youtube.com/watch?v=9HcxHDS2w1s
+- Font Awesome Docs - https://fontawesome.com/docs/web/
 
 ## Technologies used
-
+font awesome, bootstrap, moment.js, jquery, jquery ui
 
 ## License
 
