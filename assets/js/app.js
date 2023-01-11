@@ -5,12 +5,12 @@
   // stop redirecting since hyperlinks are placeholder only
   $("footer a").click(function (e) {
     e.preventDefault();
-  } );
+  });
 
   var searchSubmitEl = $("form #search[type=submit]"); //add to init
 
   console.log("test"); //add to init
-  
+
   // using click listener because why does submit listener not work
   searchSubmitEl.click(function (e) {
     e.preventDefault();
@@ -20,16 +20,16 @@
       console.log(movieTitle);
       getOmdbAPIData(movieTitle);
       userInput.val(``);
-  
+
     }
-  
+
   }); //add to init
 
   console.log(getsHistory()); //add to init
 
   // hides containers that are empty
   $("#movie-info, #movie-trailer, #movieSchedule").hide(); //add to init
-  
+
   // carousel with schedule adds to page unless no local storage data (processed in function)
   generateCarousel(); //add to init
 }());
@@ -59,8 +59,8 @@ function getOmdbAPIData(movieTitle) {
     } else {
       var movieData = extractsDatafromOmdbDataObj(OmdbDataObj);
       addsMovieDataToElement(movieData);
-      getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre); //uncomment to enable youtube api
-      // getsYouTubeVideoTestingPurposes();  //uncomment for testing
+      // getsYouTubeVideo(movieData.Title, movieData.Year, movieData.Genre); //uncomment to enable youtube api
+      getsYouTubeVideoTestingPurposes();  //uncomment for testing
     }
   });
 }
@@ -285,11 +285,11 @@ function generateCarousel() {
   var carouselHTML = `
   <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="2400">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
+    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" data-movie-id="${0}" class="active"
       aria-current="true" aria-label="Slide 1"></button>
   </div>
   <div class="carousel-inner" style="border-radius: 0.8em;">
-    <div class="carousel-item active p-2 container-fluid" style="
+    <div class="carousel-item active p-2 container-fluid" data-movie-id="${0}" style="
       background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieScheduleUserData[0].Poster});
       background-size: cover;
       background-repeat: no-repeat;
@@ -301,7 +301,7 @@ function generateCarousel() {
     </div>
     <div class="row my-3 fs-3">
       <div class="col-6 text-start"><p><u>Runtime</u>: <span>${movieScheduleUserData[0].Runtime}</span></p></div>
-      <div class="col-6 text-end"><p>${moment(movieScheduleUserData[0].DateEpocMS).format("Do MMM YYYY")}</p></div>
+      <div class="col-6 text-end"><p><i class="fa-solid fa-trash fs-4 trashBtn" id="trashBtn" data-movie-id="${0}"></i>${moment(movieScheduleUserData[0].DateEpocMS).format("Do MMM YYYY")}</p></div>
     </div>
     <div class="row my-3">
       <div class="col-12 text-start">
@@ -340,7 +340,7 @@ function generateCarousel() {
   function generateSlide(movieDataObj, i) {
     var carouselEl = $(".carousel-inner");
     var slideHTML = `
-    <div class="carousel-item p-2 container-fluid" style="
+    <div class="carousel-item p-2 container-fluid" data-movie-id="${i}" style="
       background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieDataObj.Poster});
       background-size: cover;
       background-repeat: no-repeat;
@@ -352,7 +352,7 @@ function generateCarousel() {
     </div>
     <div class="row my-3 fs-3">
       <div class="col-6 text-start"><p><u>Runtime</u>: <span>${movieDataObj.Runtime}</span></p></div>
-      <div class="col-6 text-end"><p>${moment(movieDataObj.DateEpocMS).format("Do MMM YYYY")}</p></div>
+      <div class="col-6 text-end"><p><i class="fa-solid fa-trash fs-4 trashBtn" id="trashBtn" data-movie-id="${i}"></i>${moment(movieDataObj.DateEpocMS).format("Do MMM YYYY")}</p></div>
     </div>
     <div class="row my-3">
       <div class="col-12 text-start">
@@ -378,7 +378,7 @@ function generateCarousel() {
 
     var carouselBtnEl = $(".carousel-indicators")
     var slideBtnHTML = `
-    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="${i}"
+    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="${i}" data-movie-id="${i}"
     aria-label="Slide ${i + 1}"></button>
     `;
 
@@ -388,37 +388,56 @@ function generateCarousel() {
   for (var i = 1; i < movieScheduleUserData.length; i++) {
     generateSlide(movieScheduleUserData[i], i)
   };
-// carousel must be shown before height and width can be set
+  // carousel must be shown before height and width can be set
   movieScheduleSection.show();
 
   function getMaxWidth() {
     var maxWidth = 0;
-    $(".carousel-inner").each(function(){
-        var currentWidth = parseInt($(this).width());
-        if (currentWidth > maxWidth) {
-            maxWidth = currentWidth;
-        }
+    $(".carousel-inner").each(function () {
+      var currentWidth = parseInt($(this).width());
+      if (currentWidth > maxWidth) {
+        maxWidth = currentWidth;
+      }
     });
     return maxWidth;
-}
+  }
 
-function getMaxHeight() {
-  var maxHeight = 0;
-  $(".carousel-item").each(function(){
+  function getMaxHeight() {
+    var maxHeight = 0;
+    $(".carousel-item").each(function () {
       var currentHeight = parseInt($(this).height());
       if (currentHeight > maxHeight) {
-          maxHeight = currentHeight;
+        maxHeight = currentHeight;
       }
+    });
+    return maxHeight;
+  }
+
+  console.log([getMaxHeight(), getMaxWidth()]);
+
+  var carouselSlide_classSelector = $(".carousel-item");
+
+  carouselSlide_classSelector.css("width", `${getMaxWidth()}px`); //DO NOT ADD !important - wont work. works otherwise
+  carouselSlide_classSelector.css("height", `${getMaxHeight()}px`); //DO NOT ADD !important - wont work. works otherwise
+
+  // trashBtn click event function
+  $(".trashBtn").click(function (e) {
+    console.log("listener works");
+    var movieID = $(this).data("movieId");
+    // console.log($(this).find(':selected'));
+    // console.log($(this).data("movieId"));
+
+    var movieScheduleUserData = getsHistory();
+    // console.log(movieScheduleUserData.splice(movieID,1));
+
+    movieScheduleUserData.splice(movieID,1);
+    console.log(movieScheduleUserData);
+
+    savesHistory(movieScheduleUserData);
+    $(".trashBtn").off();
+    $("#movieSchedule").html(``);
+    generateCarousel();
   });
-  return maxHeight;
-}
-
-console.log([getMaxHeight(), getMaxWidth()]);
-
-var carouselSlide_classSelector = $(".carousel-item");
-
-carouselSlide_classSelector.css("width", `${getMaxWidth()}px`); //DO NOT ADD !important - wont work. works otherwise
-carouselSlide_classSelector.css("height", `${getMaxHeight()}px`); //DO NOT ADD !important - wont work. works otherwise
 
 };
 

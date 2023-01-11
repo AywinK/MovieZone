@@ -68,6 +68,20 @@
             radial-gradient(ellipse at bottom, rgb(52, 52, 52), transparent) !important;
 }
 
+.trashBtn {
+  position: absolute;
+  left: 50%;
+  /* top: 7%; */
+  outline-style: solid;
+  outline-offset: 0.5em;
+  outline-width: 0.1em;
+  border-radius: 0.02em;
+}
+
+.trashBtn:active {
+  transform: scale(0.9);
+}
+
 /* GLOBAL TAGS */
 
 body, main {
