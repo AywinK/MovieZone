@@ -86,3 +86,7 @@ i {
 input::placeholder {
   text-align: center;
 }
+
+header h1 {
+  color:#a06cf4;
+}
