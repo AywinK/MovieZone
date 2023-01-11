@@ -91,5 +91,4 @@ Tutorials:
 font awesome, bootstrap, moment.js, jquery, jquery ui
 
 ## License
-
 MIT License
