@@ -87,82 +87,24 @@ function extractsDatafromOmdbDataObj(OmdbDataObj) {
 function addsMovieDataToElement(movieData) {
   var movieInfoEl = $("#movie-info");
 
-  movieInfoEl.html(``);
-
-  var modalHTML = `<div id="modal-container" class="">
-    <span data-toggle="tooltip" data-placement="left" title="Watch Later">
-      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#watchLaterModal">
-        <i class="fa-solid fa-clock fs-4"></i><br><span></span>
-      </button>
-    </span>
-
-    <div class="modal fade" id="watchLaterModal" tabindex="-1" aria-labelledby="watchLaterModalLabel"
-      style="display: none;" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content bg-dark text-white">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="watchLaterModalLabel">${movieData.Title}</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <section class="text-white p-2" style="
-            background-image: linear-gradient(to left, rgba(8, 8, 8, 0.5), rgba(0, 0, 0,0.9)), url(${movieData.Poster});
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-radius: 0.4em;
-            ">
-              <h2>Runtime:</h2>
-              <p>${movieData.Runtime}</p>
-              <h2>Plot:</h2>
-              <p>${movieData.Plot}</p>
-            </section>
-            <form id="watchLaterForm">
-              <div class="mb-3">
-                <label for="viewingpartymembers" class="col-form-label mt-3">Watch Party Members:</label>
-                <input type="text" class="form-control" id="viewingpartymembers" placeholder="Who are you going to watch the movie with?" autocomplete="off">
-              </div>
-              <div>
-              <p>Date:</p>
-                <div class="mb-3 justify-content-center row" id="watchDate"></div>
-              </div>
-              <div class="mb-3">
-                <label for="location" class="col-form-label">Location:</label>
-                <input type="text" class="form-control" id="location" placeholder="Where are you going to watch the movie?" autocomplete="off">
-              </div>
-              <div class="mb-3">
-                <label for="addInfo" class="col-form-label">Additional Info:</label>
-                <textarea class="form-control" rows="5" id="addInfo" placeholder="Add additional info such as scheduled movie start time here."></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" form="watchLaterForm" class="btn btn-light" data-bs-dismiss="modal" id="saveToWatchList">Add to Watch List</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>`;
-
-  movieInfoEl.html(`
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-        <h2 class="fs-1"><u>${movieData.Title}</u></h2>
-        ${modalHTML}
-        </div>
-        <p>Year: ${movieData.Year}</p>
-        <p>Actors: ${movieData.Actors}</p>
-        <p>Director: ${movieData.Director}</p>
-        <p>Genre: ${movieData.Genre}</p>
-        <p>Plot: ${movieData.Plot}</p>
-        <p>Rating: ${movieData.Rating}</p>
-    </div>
-    `);
+  //movieInfoEl.html(``);
+  $("#watchLaterModalLabel").html(movieData.Title);
+  $("#movieDataRuntime").html(movieData.Runtime);
+  $("#movieDataPlot").html(movieData.Plot);
+  $("#movieDataTitle").html(movieData.Title);
+  $("#movieDataYear").html(movieData.Year);
+  $("#movieDataActors").html(movieData.Actors);
+  $("#movieDataDirector").html(movieData.Director);
+  $("#movieDataGenre").html(movieData.Genre);
+  $("#movieDataPlotSpan").html(movieData.Plot);
+  $("#movieDataRating").html(movieData.Rating);
 
   // initialises all tooltips on webpage
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+  });
+
+  console.log(movieInfoEl);
 
   movieInfoEl.show();
 
