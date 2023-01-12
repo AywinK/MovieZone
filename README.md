@@ -24,11 +24,11 @@ The webpage allows you to search the OMDB database, click in the search bar and 
 
 When the clock symbols is clicked in the top right corner of the information section, a modal appears and lets you save the movie to your schedule.
 
-![computer app demo](assets/gif/chrome_kfbrLaPfyi.gif)
+![computer app demo](assets/gif/chrome_STbkM3AxFm.gif)
 
 When you access the site from a mobile, the sections realign themselves as coloumns.
 
-![mobile response demo](assets/gif/chrome_xVxzixFDHn.gif)
+![mobile response demo](assets/gif/chrome_ihcn4sLnBc.gif)
 
 
 ## Acceptance criteria
