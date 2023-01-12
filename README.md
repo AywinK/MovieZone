@@ -23,12 +23,13 @@ So that I can better organise my time to watch as many movies as possible!
 The webpage allows you to search the OMDB database, click in the search bar and type in the movie you want to know more about. Click search, and watch as the page loads. Here you see info about the movie, and the trailer for the movie.
 
 When the clock symbols is clicked in the top right corner of the information section, a modal appears and lets you save the movie to your schedule.
+The movie saved to the schedule then appears in a carrousel in the bottom of the page.
 
-![computer app demo](assets/gif/chrome_kfbrLaPfyi.gif)
+![computer app demo](assets/gif/chrome_STbkM3AxFm.gif)
 
 When you access the site from a mobile, the sections realign themselves as coloumns.
 
-![mobile response demo](assets/gif/chrome_xVxzixFDHn.gif)
+![mobile response demo](assets/gif/chrome_ihcn4sLnBc.gif)
 
 
 ## Acceptance criteria
