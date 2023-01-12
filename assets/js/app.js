@@ -32,6 +32,24 @@
 
   // carousel with schedule adds to page unless no local storage data (processed in function)
   generateCarousel(); //add to init
+
+  // window resize event function - responsiveness of carousel
+    setInterval (function () {
+      var currentActiveSlide = $(".carousel-indicators .active");
+    // var currentActiveBtn = $(".carousel-indicators active");
+
+    var currentActiveSlideMovieId = currentActiveSlide.data("movieId");
+    console.log(currentActiveSlideMovieId);
+
+    $(".movieSchedule").html(``);
+    generateCarousel(currentActiveSlideMovieId);
+
+    // // remove active class from default first slide and its related carousel-indicator
+    // $(".carousel-inner active, .carousel-indicators button active").removeClass("active");
+    // $(`.carousel-inner[data-movie-id="${currentActiveSlideMovieId}"]", .carousel-indicators button[data-movie-id="${currentActiveSlideMovieId}"]`).addClass("active");
+    },1000);
+
+
 }());
 
 
@@ -272,7 +290,7 @@ function addsToHistory(movieSaveDataObj) {
 };
 
 // generates movie schedule section carousel
-function generateCarousel() {
+function generateCarousel(currentActiveSlideMovieId) {
   var movieScheduleUserData = getsHistory();
 
   console.log(!movieScheduleUserData.length);
@@ -283,7 +301,7 @@ function generateCarousel() {
 
   var movieScheduleSection = $("#movieSchedule");
   var carouselHTML = `
-  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="2400">
+  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="3600">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" data-movie-id="${0}" class="active"
       aria-current="true" aria-label="Slide 1"></button>
@@ -438,6 +456,35 @@ function generateCarousel() {
     $("#movieSchedule").html(``);
     generateCarousel();
   });
+
+  if (currentActiveSlideMovieId) {
+     // remove active class from default first slide and its related carousel-indicator
+     $(".carousel-inner active, .carousel-indicators button active").removeClass("active");
+    //  $(`.carousel-inner[data-movie-id="${currentActiveSlideMovieId}"]", .carousel-indicators button[data-movie-id="${currentActiveSlideMovieId}"]`).addClass("active");
+
+      $(".carousel-inner").data("movieId", `currentActiveSlideMovieId`).addClass("active");
+      $(".carousel-indicators").data("movieId", `currentActiveSlideMovieId`).addClass("active");
+
+
+  };
+
+  // // window resize event function - responsiveness of carousel
+  // $(window).resize(function () {
+
+  //   var currentActiveSlide = $(".carousel-indicators .active");
+  //   // var currentActiveBtn = $(".carousel-indicators active");
+
+  //   var currentActiveSlideMovieId = currentActiveSlide.data("movieId");
+  //   console.log(currentActiveSlideMovieId);
+
+  //   $(".movieSchedule").html(``);
+  //   generateCarousel(currentActiveSlideMovieId);
+
+  //   // // remove active class from default first slide and its related carousel-indicator
+  //   // $(".carousel-inner active, .carousel-indicators button active").removeClass("active");
+  //   // $(`.carousel-inner[data-movie-id="${currentActiveSlideMovieId}"]", .carousel-indicators button[data-movie-id="${currentActiveSlideMovieId}"]`).addClass("active");
+    
+  // });
 
 };
 
