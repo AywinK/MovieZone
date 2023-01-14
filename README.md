@@ -114,6 +114,11 @@ The functionality, responsiveness and user interface is constantly being develop
 Below is an example demo of a feature (addition of the delete button for the movie schedule) in development. This feature tackles the issue outlined at: https://github.com/AywinK/MovieZone/issues/55. The delete button feature currently requires further testing and improvements to responsiveness and UI before it can be deployed to the live application.
 <br>
 ![Experimental Delete Button Demo](assets/images/expDeleteFeatureDemo.gif)
+<br>
+
+The gif below showcases a fix for the issue at: https://github.com/AywinK/MovieZone/issues/51. The fix for this issue, however, will be deployed at a later date.
+<br>
+![Experimental Carousel Responsiveness Demo](assets/images/expCarouselResponsivenessDemo.gif)
 
 ## License
 MIT License
