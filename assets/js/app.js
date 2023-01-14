@@ -32,6 +32,7 @@
 
   // carousel with schedule adds to page unless no local storage data (processed in function)
   generateCarousel(); //add to init
+
 }());
 
 
@@ -272,7 +273,7 @@ function addsToHistory(movieSaveDataObj) {
 };
 
 // generates movie schedule section carousel
-function generateCarousel() {
+function generateCarousel(currentActiveSlideMovieId) {
   var movieScheduleUserData = getsHistory();
 
   console.log(!movieScheduleUserData.length);
@@ -283,7 +284,7 @@ function generateCarousel() {
 
   var movieScheduleSection = $("#movieSchedule");
   var carouselHTML = `
-  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="2400">
+  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true" data-bs-interval="3600">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" data-movie-id="${0}" class="active"
       aria-current="true" aria-label="Slide 1"></button>
@@ -388,37 +389,65 @@ function generateCarousel() {
   for (var i = 1; i < movieScheduleUserData.length; i++) {
     generateSlide(movieScheduleUserData[i], i)
   };
+
   // carousel must be shown before height and width can be set
   movieScheduleSection.show();
 
-  function getMaxWidth() {
-    var maxWidth = 0;
-    $(".carousel-inner").each(function () {
-      var currentWidth = parseInt($(this).width());
-      if (currentWidth > maxWidth) {
-        maxWidth = currentWidth;
+  // carousel consistent slide functionality
+  var setsSlideToMaxSize = (function () {
+
+    return function () {
+
+      function getMaxWidth() {
+        var maxWidth = 0;
+        $(".carousel-inner").each(function () {
+          var currentWidth = parseInt($(this).width());
+          if (currentWidth > maxWidth) {
+            maxWidth = currentWidth;
+          }
+        });
+        return maxWidth;
       }
-    });
-    return maxWidth;
-  }
 
-  function getMaxHeight() {
-    var maxHeight = 0;
-    $(".carousel-item").each(function () {
-      var currentHeight = parseInt($(this).height());
-      if (currentHeight > maxHeight) {
-        maxHeight = currentHeight;
+      function getMaxHeight() {
+        var maxHeight = 0;
+        $(".carousel-item").each(function () {
+          var currentHeight = parseInt($(this).height());
+          if (currentHeight > maxHeight) {
+            maxHeight = currentHeight;
+          }
+        });
+        return maxHeight;
       }
-    });
-    return maxHeight;
-  }
 
-  console.log([getMaxHeight(), getMaxWidth()]);
+      console.log([getMaxHeight(), getMaxWidth()]);
 
-  var carouselSlide_classSelector = $(".carousel-item");
+      var carouselSlide_classSelector = $(".carousel-item");
 
-  carouselSlide_classSelector.css("width", `${getMaxWidth()}px`); //DO NOT ADD !important - wont work. works otherwise
-  carouselSlide_classSelector.css("height", `${getMaxHeight()}px`); //DO NOT ADD !important - wont work. works otherwise
+      carouselSlide_classSelector.css("width", `${getMaxWidth()}px`); //DO NOT ADD !important - wont work. works otherwise
+      carouselSlide_classSelector.css("height", `${getMaxHeight()}px`); //DO NOT ADD !important - wont work. works otherwise
+
+    };
+
+  }());
+
+  var revertsSlideToBootstrapDefault = (function () {
+    return function () {
+      var carouselSlide_classSelector = $(".carousel-item");
+
+      carouselSlide_classSelector.css("width", ""); //DO NOT ADD !important - wont work. works otherwise
+      carouselSlide_classSelector.css("height", ""); //DO NOT ADD !important - wont work. works otherwise
+    };
+  }());
+
+  // sets initial carousel slides to a consistent size
+  setsSlideToMaxSize();
+
+  // window resize responsive carousel behaviour fix
+  $(window).resize(function () {
+revertsSlideToBootstrapDefault();
+setsSlideToMaxSize();
+  });
 
   // trashBtn click event function
   $(".trashBtn").click(function (e) {
@@ -430,7 +459,7 @@ function generateCarousel() {
     var movieScheduleUserData = getsHistory();
     // console.log(movieScheduleUserData.splice(movieID,1));
 
-    movieScheduleUserData.splice(movieID,1);
+    movieScheduleUserData.splice(movieID, 1);
     console.log(movieScheduleUserData);
 
     savesHistory(movieScheduleUserData);
@@ -438,6 +467,17 @@ function generateCarousel() {
     $("#movieSchedule").html(``);
     generateCarousel();
   });
+
+  // if (currentActiveSlideMovieId) {
+  //   // remove active class from default first slide and its related carousel-indicator
+  //   $(".carousel-inner active, .carousel-indicators button active").removeClass("active");
+  //   //  $(`.carousel-inner[data-movie-id="${currentActiveSlideMovieId}"]", .carousel-indicators button[data-movie-id="${currentActiveSlideMovieId}"]`).addClass("active");
+
+  //   $(".carousel-inner").data("movieId", `currentActiveSlideMovieId`).addClass("active");
+  //   $(".carousel-indicators").data("movieId", `currentActiveSlideMovieId`).addClass("active");
+
+
+  // };
 
 };
 
