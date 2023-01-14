@@ -1,38 +1,33 @@
 # MovieZone
 
+## Description
+A web application which allows movie enthusiasts to search for movie titles and create a schedule to watch movies.
+
 ## Table of Contents
 
-* [Deployed Page](#deployedPage)
-* [User story](#user-story)
-* [Usage](#usage)
-* [Acceptance Criteria](#acceptance-criteria)
-* [Credits](#credits)
-* [Technologies used](#technologies-used)
-* [License](#license)
+* [Description](#Description)
+* [Deployed Page](#Deployed-Page)
+* [User story](#User-Story)
+* [Acceptance Criteria](#Acceptance-Criteria)
+* [Usage](#Usage)
+* [Credits](#Credits)
+* [Technologies Used](#Technologies-Used)
+* [Future Development](#Future-Development)
+* [License](#License)
 
 
 ## Deployed page
-https://aywink.github.io/MovieZone/
+The web application is deplayed using GitHub Pages at: https://aywink.github.io/MovieZone/
 
 ## User story
+```markdown
 As a movie enthusiast,
 I want to search for movies to watch and create a schedule,
 so that I can better organise my time to watch as many movies as possible!
-
-## Usage 
-The webpage allows you to search the OMDB database, click in the search bar and type in the movie you want to know more about. Click search, and watch as the page loads. Here you see info about the movie, and the trailer for the movie.
-
-When the clock symbols is clicked in the top right corner of the information section, a modal appears and lets you save the movie to your schedule.
-The movie saved to the schedule then appears in a carousel in the bottom of the page.
-
-![computer app demo](assets/gif/chrome_STbkM3AxFm.gif)
-
-When you access the site from a mobile, the sections realign themselves as columns.
-
-![mobile response demo](assets/gif/chrome_ihcn4sLnBc.gif)
-
+```
 
 ## Acceptance criteria
+```markdown
 GIVEN a movie dashboard web application
 
 WHEN the page loads
@@ -64,6 +59,19 @@ THEN I am presented with a form that will allow me to add information to organis
 WHEN I add the movie viewing events to the watch list
 
 THEN the events are persistently saved and can be viewed later after reopening/reloading the web application
+```
+
+## Usage 
+The webpage allows you to search the OMDB database, click in the search bar and type in the movie you want to know more about. Click search, and watch as the page loads. Here you see info about the movie, and the trailer for the movie.
+
+When the clock symbols is clicked in the top right corner of the information section, a modal appears and lets you save the movie to your schedule.
+The movie saved to the schedule then appears in a carousel in the bottom of the page.
+
+![computer app demo](assets/gif/chrome_STbkM3AxFm.gif)
+
+When you access the site from a mobile, the sections realign themselves as columns.
+
+![mobile response demo](assets/gif/chrome_ihcn4sLnBc.gif)
 
 ## Credits
 Collaborators:
@@ -71,9 +79,14 @@ Collaborators:
 - Inna:  https://github.com/innonka
 - Sofie: https://github.com/sofie-ventzel
 
-links to API used: 
-- OMDB: http://www.omdbapi.com/ 
-- Youtube: https://developers.google.com/youtube
+APIs and External Library Resources: 
+- OMDb API- http://www.omdbapi.com/ 
+- Youtube API v3 - https://developers.google.com/youtube/v3
+- Font Awesome Docs - https://fontawesome.com/docs/web
+- jQuery UI autocomplete Documentation - https://jqueryui.com/datepicker/
+- jQuery Documentation - https://api.jquery.com/
+- Moment.js Documentation - https://momentjs.com/docs/
+- Bootstrap Documentation - https://getbootstrap.com/docs/5.2/getting-started/introduction/
 
 Tutorials:
 - W3Schools - https://www.w3schools.com/js/default.asp
@@ -81,15 +94,26 @@ Tutorials:
 - Stack Overflow threads - https://stackoverflow.com/
 - JavaScript: The Definitive Guide, 7th Edition by David Flanagan - ISBN: 9781491952023
 - jQuery Cheat Sheet - https://htmlcheatsheet.com/jquery/
-- Moment.js Documentation - https://momentjs.com/docs/
-- jQuery UI autocomplete Documentation - https://api.jqueryui.com/autocomplete/
-- jQuery Documentation - https://api.jquery.com/
-- Bootstrap Documentation - https://getbootstrap.com/docs/5.2/getting-started/introduction/
-- YouTube carousel tutorials - https://www.youtube.com/watch?v=9HcxHDS2w1s
-- Font Awesome Docs - https://fontawesome.com/docs/web/
+- YouTube tooltips tutorial - https://www.youtube.com/watch?v=WTrW-1JsDYE
+- YouTube modal tutorial - https://www.youtube.com/watch?v=tt5uUMQgzl0
+- YouTube carousel tutorial - https://www.youtube.com/watch?v=xReQ_nQbdmA
+/
 
-## Technologies used
-font awesome, bootstrap, moment.js, jquery, jquery ui
+## Technologies Used
+- Bootstrap
+- Font Awesome
+- jQuery
+- jQuery UI DatePicker
+- Moment.js
+- OMDb API
+- YouTube API v3
+
+## Future Development
+The functionality, responsiveness and user interface is constantly being developed to enhance the user experience and application usability. The issues tab (https://github.com/AywinK/MovieZone/issues) documents improvements to the application. Progress of future feature implementations can be observed under the branch named "experimentalBranch."
+
+Below is an example demo of a feature (addition of the delete button for the movie schedule) in development. This feature tackles the issue outlined at: https://github.com/AywinK/MovieZone/issues/55. The delete button feature currently requires further testing and improvements to responsiveness and UI before it can be deployed to the live application.
+<br>
+![Experimental Delete Button Demo](assets/images/expDeleteFeatureDemo.gif)
 
 ## License
 MIT License
