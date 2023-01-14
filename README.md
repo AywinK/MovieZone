@@ -12,6 +12,7 @@ A web application which allows movie enthusiasts to search for movie titles and 
 * [Usage](#Usage)
 * [Credits](#Credits)
 * [Technologies Used](#Technologies-Used)
+* [Future Development](#Future-Development)
 * [License](#License)
 
 
@@ -108,7 +109,11 @@ Tutorials:
 - YouTube API v3
 
 ## Future Development
-The functionality, responsiveness and user interface is constantly being developed to enhance the user experience and application usability. The issues tab (https://github.com/AywinK/MovieZone/issues) documents improvements to the application. 
+The functionality, responsiveness and user interface is constantly being developed to enhance the user experience and application usability. The issues tab (https://github.com/AywinK/MovieZone/issues) documents improvements to the application. Progress of future feature implementations can be observed under the branch named "experimentalBranch."
+
+Below is an example demo of a feature (addition of the delete button for the movie schedule) in development. This feature tackles the issue outlined at: https://github.com/AywinK/MovieZone/issues/55. The delete button feature currently requires further testing and improvements to responsiveness and UI before it can be deployed to the live application.
+<br>
+![Experimental Delete Button Demo](assets/images/expDeleteFeatureDemo.gif)
 
 ## License
 MIT License
